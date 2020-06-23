@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.platform.dao.MendianDao">
+
+<!--    <resultMap type="com.platform.entity.MendianEntity" id="attributeCategoryMap">-->
+<!--        <result property="id" column="id"/>-->
+<!--        <result property="mendian_name" column="mendian_name"/>-->
+<!--        <result property="mendian_address" column="mendian_address"/>-->
+<!--        <result property="mendian_tel" column="mendian_tel"/>-->
+<!--        <result property="mendian_bustime" column="mendian_bustime"/>-->
+<!--    </resultMap>-->
+
+    <select id="queryObject" resultType="com.platform.entity.MendianEntity">
+		select
+			id,
+            mendian_name,
+            mendian_address,
+            mendian_tel,
+            mendian_bustime
+		from mendian
+		where id = #{id}
+	</select>
+
+    <select id="queryList" resultType="com.platform.entity.MendianEntity">
+        select
+        id,
+        mendian_name,
+        mendian_address,
+        mendian_tel,
+        mendian_bustime
+        from mendian
+        WHERE 1=1
+        <if test="mendian_name != null and mendian_name.trim() != ''">
+            AND mendian_name LIKE concat('%', #{mendian_name},'%')
+        </if>
+        <if test="enabled != null and enabled.trim() != ''">
+            AND enabled = #{enabled}
+        </if>
+        <if test="offset != null and limit != null">
+            limit #{offset}, #{limit}
+        </if>
+    </select>
+
+    <select id="queryTotal" resultType="int">
+		select count(*) from mendian
+		WHERE 1=1
+	</select>
+
+    <insert id="save" parameterType="com.platform.entity.MendianEntity">
+		insert into mendian(
+			`mendian_name`,
+			`mendian_address`,
+			`mendian_tel`,
+			mendian_bustime)
+		values(
+			#{mendian_name},
+			#{mendian_address},
+			#{mendian_tel},
+			#{mendian_bustime})
+	</insert>
+
+    <update id="update" parameterType="com.platform.entity.MendianEntity">
+        update mendian
+        <set>
+            <if test="mendian_name != null">`mendian_name` = #{mendian_name},</if>
+            <if test="mendian_address != null">`mendian_address` = #{mendian_address},</if>
+            <if test="mendian_tel != null">`mendian_tel` = #{mendian_tel},</if>
+            <if test="mendian_bustime != null">`mendian_bustime` = #{mendian_bustime},</if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="delete">
+		delete from mendian where id = #{value}
+	</delete>
+
+</mapper>
