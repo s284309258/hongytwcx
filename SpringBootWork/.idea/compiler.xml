@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <option name="USE_RELEASE_OPTION" value="false" />
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="Mybatis" />
+        <module name="Redis" />
+        <module name="Web" />
+        <module name="ActiveMQ" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="ActiveMQ" target="1.8" />
+      <module name="Mybatis" target="1.8" />
+      <module name="Redis" target="1.8" />
+      <module name="springbootwork" target="1.8" />
+      <module name="Web" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="ActiveMQ" options="-parameters" />
+      <module name="Mybatis" options="-parameters" />
+      <module name="Redis" options="-parameters" />
+      <module name="Web" options="-parameters" />
+    </option>
+  </component>
+</project>
