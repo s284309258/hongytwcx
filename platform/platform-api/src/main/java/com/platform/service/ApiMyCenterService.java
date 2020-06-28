@@ -376,8 +376,8 @@ public class ApiMyCenterService extends ApiBaseAction {
         Map<String, Object> resultObj = new HashMap<String, Object>();
 
         try{
-            String sql = "select * from nideshop_product where goods_id="+map.get("goodsId")+" and goods_specification_ids like '%"+map.get("specifId")+"%' " +
-                    " or goods_specification_ids like '%"+map.get("specifId")+"%'";
+            String sql = "select * from nideshop_product where goods_id="+map.get("goodsId")+" and (goods_specification_ids like '%"+map.get("specifId")+"%' " +
+                    " or goods_specification_ids like '%"+map.get("specifId")+"%')";
             List<Map<String,Object>> list = Sqlca.getArrayListFromMap(sql,dataSource.getConnection());
             if(list.size()>0){
                 resultObj.put("price",list.get(0));
